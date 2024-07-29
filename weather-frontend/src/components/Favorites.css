@@ -20,13 +20,28 @@
   padding: 20px;
   position: relative;
   text-align: center;
-  width: 30%; /* Adjust the width of each item */
+  flex: 1 1 calc(33.333% - 40px); /* Flex-grow, flex-shrink, and flex-basis */
+  min-width: 300px; /* Minimum width to maintain layout */
+  max-width: 100%; /* Maximum width to avoid overflowing */
   box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
 .favorite-details {
   margin-bottom: 10px;
 }
+
+.weather-details {
+  text-align: left; /* Ensure weather details are left-aligned */
+  margin-top: 10px;
+}
+
+/* .forecast {
+  margin-top: 10px;
+}
+
+.forecast-day {
+  margin-bottom: 10px; 
+}*/
 
 .delete-icon-wrapper {
   position: absolute;
@@ -66,4 +81,25 @@
 .delete-icon-wrapper .delete-icon:hover::after {
   visibility: visible;
   opacity: 1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-button:hover {
+  background-color: #0056b3;
 }

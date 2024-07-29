@@ -8,6 +8,8 @@ const Favorites = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [successMessage, setSuccessMessage] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; // Adjust the number of items per page
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -22,17 +24,25 @@ const Favorites = () => {
         const response = await axios.get('http://localhost:5000/api/favorites', {
           headers: { Authorization: `${token}` },
         });
-        
-        if (response.data.msg === 'No favorites found for this user') {
+
+        if (response.data.data.length === 0) {
           setError('No favorite cities yet.');
-          setFavorites([]);
-        } else if (response.data.data && Array.isArray(response.data.data)) {
-          setFavorites(response.data.data);
         } else {
-          setError('Unexpected data format received.');
+          const favoritesData = response.data.data;
+          const weatherPromises = favoritesData.map(fav =>
+            axios.get(`http://localhost:5000/api/weather/${fav.city}`)
+          );
+
+          const weatherResponses = await Promise.all(weatherPromises);
+          const detailedFavorites = favoritesData.map((fav, index) => ({
+            ...fav,
+            details: weatherResponses[index].data
+          }));
+
+          setFavorites(detailedFavorites);
         }
       } catch (err) {
-        console.error('Error fetching favorites:', err);
+        console.error('Error fetching favorites:', err); // Log error details
         if (err.response && err.response.status === 500) {
           setError('Server error. Please try again later.');
         } else {
@@ -60,10 +70,10 @@ const Favorites = () => {
 
       if (response.status === 200) {
         setFavorites(favorites.filter(fav => fav._id !== id));
-        setSuccessMessage('Favorite has been succesfully removed');
-        setTimeout(()=>{
+        setSuccessMessage('Favorite removed successfully');
+        setTimeout(() => {
           setSuccessMessage('');
-        }, 1500);
+        }, 3000); // Clear the success message after 3 seconds
       } else {
         setError('Failed to delete favorite.');
       }
@@ -71,6 +81,18 @@ const Favorites = () => {
       console.error('Error deleting favorite:', err);
       setError('Failed to delete favorite.');
     }
+  };
+
+  const indexOfLastFavorite = currentPage * itemsPerPage;
+  const indexOfFirstFavorite = indexOfLastFavorite - itemsPerPage;
+  const currentFavorites = favorites.slice(indexOfFirstFavorite, indexOfLastFavorite);
+
+  const nextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(prevPage => prevPage - 1);
   };
 
   return (
@@ -81,25 +103,43 @@ const Favorites = () => {
       ) : error ? (
         <p className='error'>{error}</p>
       ) : (
-        <div className="favorites-container">
-          {favorites.map((fav) => (
-            <div key={fav._id} className="favorite-item">
-              <div className="favorite-details">
-                <h2>{fav.city}</h2>
-                <p>{fav.temperature}°C - {fav.description}</p>
+        <>
+          <div className="favorites-container">
+            {currentFavorites.map((fav) => (
+              <div key={fav._id} className="favorite-item">
+                <div className="favorite-details">
+                  <h2>{fav.city}</h2>
+                  {fav.details && (
+                    <div className="weather-details">
+                      <p>Temperature: {fav.details.temperature}°C</p>
+                      <p>Description: {fav.details.description}</p>
+                      <p>Rainfall: {fav.details.rainfall} mm</p>
+                      <p>Wind Speed: {fav.details.windSpeed} kph</p>
+                      <p>Wind Direction: {fav.details.windDirection}</p>
+                    </div>
+                  )}
+                </div>
+                <div className="delete-icon-wrapper">
+                  <FaTrash
+                    className="delete-icon"
+                    onClick={() => deleteFavorite(fav._id)}
+                    title="Remove favorite city"
+                  />
+                </div>
               </div>
-              <div className="delete-icon-wrapper">
-                <FaTrash
-                  className="delete-icon"
-                  onClick={() => deleteFavorite(fav._id)}
-                  title="Remove favorite city"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+          <div className="pagination">
+            {currentPage > 1 && (
+              <button onClick={prevPage} className="pagination-button">Previous</button>
+            )}
+            {indexOfLastFavorite < favorites.length && (
+              <button onClick={nextPage} className="pagination-button">Next</button>
+            )}
+          </div>
+        </>
       )}
-      {successMessage && <p className='success'>{successMessage}</p>}
+      {successMessage && <p className="success">{successMessage}</p>}
     </div>
   );
 };

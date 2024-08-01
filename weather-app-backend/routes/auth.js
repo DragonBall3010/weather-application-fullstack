@@ -120,7 +120,7 @@ router.post(
 );
 
 // @route    GET api/auth
-// @desc     Get user by token
+// @desc     Get user by token  
 // @access   Private
 router.get('/profile', auth, async (req, res) => {
   try {

@@ -35,7 +35,7 @@ router.get('/:city', async (req, res) => {
             }))
         };
 
-        console.log('Weather Data:', weatherData);  // Log the processed weather data
+        //console.log('Weather Data:', weatherData);  // Log the processed weather data
 
         res.json(weatherData);
     } catch (err) {

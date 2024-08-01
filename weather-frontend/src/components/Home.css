@@ -1,74 +1,86 @@
 /* Home.css */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
 
-  .app-heading {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2em;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-left: 60px;
+}
 
-.main-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .content-box {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 400px;
-  }
-  
-  .search-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .search-icon {
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .search-form {
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-form input {
-    margin-left: 10px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .search-form button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .search-form button:hover {
-    background-color: #0056b3;
-  }
-  
+.taskbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px;
+  background-color: #f9b806;
+  border-bottom: 1px solid #ddd;
+  width: calc(100%); /* Adjust this width based on your sidebar width */
+}
+
+.app-heading {
+  font-size: 2em;
+  margin-left: 5px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.search-form {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.search-form input {
+  padding: 10px;
+  font-size: 1em;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.search-form button {
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.weather-info-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.city-name {
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.weather-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.temperature {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 1.2em;
+}

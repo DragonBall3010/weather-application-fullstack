@@ -33,11 +33,10 @@ const Home = ({ isAuthenticated, addFavorite }) => {
   };
 
   return (
-    <div className="main-content">
-      <h1 className='app-heading'>Weather App</h1>
-      <div className="content-box">
+    <div className="container">
+      <div className="taskbar">
+        <h1 className='app-heading'>Weathery</h1>
         <div className="search-container">
-          <h2>{city}</h2>
           <FaSearch className="search-icon" onClick={handleSearchClick} />
           {showSearch && (
             <form onSubmit={handleSearch} className="search-form">
@@ -51,11 +50,13 @@ const Home = ({ isAuthenticated, addFavorite }) => {
             </form>
           )}
         </div>
+      </div>
+      <div className="weather-info-container">
+        <h2 className="city-name">{city}</h2>
         {weather && (
-          <div>
-            {/* <h2>{weather.city}</h2> */}
-            <p>Temperature: {weather.temperature}°C</p>
-            <p>Description: {weather.description}</p>
+          <div className="weather-info">
+            <p className="temperature">{weather.temperature}°C</p>
+            <p className="description">{weather.description}</p>
             {isAuthenticated && (
               <button onClick={() => addFavorite(weather.city, weather.temperature, weather.description)}>Add to Favorites</button>
             )}

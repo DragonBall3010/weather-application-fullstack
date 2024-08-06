@@ -23,8 +23,8 @@ const Login = ({ setAuthToken }) => {
   };
 
   return (
-    <div classname="login-container">
-      <div classname = "login-form">
+    <div className="login-container">
+      <div className = "login-form">
         <h2>Login to Weathery</h2>
         {error && <p className='error'>{error}</p>}
         <form onSubmit={handleSubmit}>

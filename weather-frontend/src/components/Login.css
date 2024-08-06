@@ -1,75 +1,87 @@
-.login-container{
-    display: block;
-    justify-content: centre;
-    align-items: centre;
-    height: 100vh;
-    background-color: #f0f2f5;
+/* Center the entire login container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f4f8; /* Light gray background for a clean look */
 }
 
-.login-form{
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: centre;
+/* Style the login form */
+.login-form {
+  background-color: #ffffff; /* White background for the form */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100%;
+  max-width: 400px; /* Limits the form width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Style the form heading */
 .login-form h2 {
-    margin-bottom: 1.5rem;
-    color: #333333;
-  }
+  margin-bottom: 1.5rem;
+  color: #003366; /* Dark blue color for the heading */
+  font-size: 1.75rem;
+}
 
+/* Style the input groups */
+.input-group {
+  width: 100%;
+  margin-bottom: 1rem;
+  text-align: left;
+}
 
-  .input-group {
-    margin-bottom: 1rem;
-    text-align: left;
-  }
-  
-  .input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333333;
-  }
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333333; /* Darker gray for label text */
+}
 
-  .input-group input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-  }
-  
-  .login-button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error {
-    color: #ff0000;
-    margin-bottom: 1rem;
-  }
-  
-  .register-link {
-    margin-top: 1rem;
-    color: #007bff;
-  }
-  
-  .register-link a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .register-link a:hover {
-    text-decoration: underline;
-  }
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cccccc; /* Light gray border for inputs */
+  border-radius: 4px;
+}
+
+/* Style the login button */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff; /* Blue background for the button */
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.login-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Style for error messages */
+.error {
+  color: #ff0000; /* Red color for errors */
+  margin-bottom: 1rem;
+}
+
+/* Style for register link */
+.register-link {
+  margin-top: 1rem;
+  color: #007bff; /* Blue color for the link */
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold; /* Bold text for emphasis */
+}
+
+.register-link a:hover {
+  text-decoration: underline; /* Underline on hover for better visibility */
+}

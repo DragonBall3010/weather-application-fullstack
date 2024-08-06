@@ -4,22 +4,30 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  margin-left: 60px;
+  margin: 20px 10px;
+  padding: 0;
+  margin-left: 52px;
+  margin-top: 10px;
 }
 
 .taskbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1px;
-  background-color: #f9b806;
-  border-bottom: 1px solid #ddd;
-  width: calc(100%); /* Adjust this width based on your sidebar width */
+  height: 70px;
+  padding: 10px 20px; /* Increased padding for better spacing */
+  background-color: #004d99; /* Dark blue background for the taskbar */
+  color: white; /* White text color for contrast */
+  border-bottom: 1px solid #003366; /* Slightly darker blue border */
+  width: calc(100% - 60px); /* Full width minus sidebar width */
+  position: absolute;
+  top: 0;
+  box-sizing: border-box; /* Include padding and border in element's total width */
 }
 
 .app-heading {
   font-size: 2em;
-  margin-left: 5px;
+  margin-left: 0;
 }
 
 .search-container {
@@ -59,11 +67,12 @@
 }
 
 .weather-info-container {
-  padding: 20px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
+  margin-top: 60px;
 }
 
 .city-name {
@@ -77,6 +86,7 @@
 }
 
 .temperature {
+  margin-top: 10px;
   font-size: 3em;
   font-weight: bold;
 }
